@@ -15,3 +15,5 @@ install.packages(pkgs)
 ```
 
 Other packages used will be picked up as dependencies of these packages on installation. 
+
+A Census API key is required to access the Census API.  Participants should sign up for a key at https://api.census.gov/data/key_signup.html (it generally takes just a few minutes). 
