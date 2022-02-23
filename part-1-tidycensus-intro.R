@@ -112,7 +112,14 @@ wa_200k %>%
        y = "")
 
 # Exercises
-# 1. Look up variables from the 2020 decennial Census with `load_variables(2020, "pl")`.
-# 2. Get a dataset with information on total population and the Hispanic population from the 2020 decennial Census for counties in Washington using appropriate Census variable IDs and `get_decennial()`. 
-# 3. Bonus: try to adapt the code above to find out which county in Washington has the largest Hispanic share of its population in 2020.  We'll review after the break!
+# 1. Look up variables from the 2020 decennial Census with 
+# `load_variables(2020, "pl")`.
+#g
+# 2. Get a dataset with information on total population and the Hispanic population 
+# from the 2020 decennial Census for counties in Washington using appropriate 
+# Census variable IDs and `get_decennial()`. 
+#
+# 3. Bonus: try to adapt the code above to find out which county in 
+# Washington has the largest Hispanic share of its population in 2020.  
+# We'll review after the break!
   
