@@ -16,6 +16,9 @@ wa_pct_hispanic <- wa_2020 %>%
   mutate(percent_hispanic = 100 * (P2_002N / P2_001N)) %>%
   arrange(desc(percent_hispanic))
 
+# To get started, let's install some mapping packages if necessary:
+# install.packages(c("mapview", "tmap"))
+
 # tigris and county "geometry"
 library(tigris)
 
@@ -95,25 +98,34 @@ king_income <- get_acs(
   variables = "B19013_001",
   state = "WA",
   county = "King",
-  geometry = TRUE
+  geometry = TRUE,
+  cb = FALSE
 )
 
-mapview(king_income)
+# mapview can make quick choropleth maps as well!
+mapview(king_income, zcol = "estimate")
 
-# New feature: `erase_water()`!
-library(sf)
+# Problem: where is Mercer Island?
+# Brand-new feature to resolve this: `erase_water()`!
 
 # Transform to a State Plane coordinate reference system
 # (Washington North - EPSG code 6596)
+# How to find the code?  Use the crsuggest package
+# install.packages("crsuggest")
+library(crsuggest)
+suggestions <- suggest_crs(king_income)
+View(suggestions)
+
+# Use `st_transform()` to transform to a projected CRS, 
 # then erase the largest water areas in the county (area percentile 90 percent and up)
+library(sf)
+
 king_income_erased <- king_income %>%
   st_transform(6596) %>%
   erase_water(area_threshold = 0.9)
 
-# Our map should now look much better!
-tm_shape(king_income_erased) + 
-  tm_polygons(col = "estimate", palette = "viridis",
-              alpha = 0.6)
+# Our data should now look much better!
+mapview(king_income_erased, zcol = "estimate")
 
 # Exercises:
 # 1. Use your knowledge gained in both parts of this workshop to get spatial Census data for a different location and different Census variable with tidycensus.
