@@ -22,11 +22,14 @@ wa_pct_hispanic <- wa_2020 %>%
 # tigris and county "geometry"
 library(tigris)
 
+# The core TIGER/Line shapefiles are obtained by default
+wa_counties <- counties("WA", year = 2020)
+
 # cb = TRUE gives us the cartographic boundary shapefile, which is pre-clipped to the US
 # shoreline and better for thematic mapping
-wa_counties <- counties("WA", cb = TRUE, year = 2020) 
+wa_counties_cb <- counties("WA", cb = TRUE, year = 2020) 
 
-plot(wa_counties$geometry)
+plot(wa_counties_cb$geometry)
 
 # Browse interactively with mapview
 library(mapview)
