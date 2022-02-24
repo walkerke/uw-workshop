@@ -92,8 +92,8 @@ tmap_mode("view")
 
 tm_shape(wa_2020_geo) + 
   tm_polygons(col = "percent_hispanic", palette = "Purples",
-              title = "% Hispanic, 2020", alpha = 0.5) + 
-  tm_layout(legend.outside = TRUE)
+              title = "% Hispanic, 2020", alpha = 0.5,
+              id = "NAME") 
 
 # Advanced workflow: King County geometries
 king_income <- get_acs(
@@ -101,8 +101,7 @@ king_income <- get_acs(
   variables = "B19013_001",
   state = "WA",
   county = "King",
-  geometry = TRUE,
-  cb = FALSE
+  geometry = TRUE
 )
 
 # mapview can make quick choropleth maps as well!
